@@ -174,6 +174,27 @@ npm run icons        # 重新生成图标（改配色时用）
 
 ---
 
+## 7. 部署到 GitHub Pages（手机安装推荐路径）
+
+代码已用相对路径构建（`vite.config.js` 的 `base: './'`，manifest / Service Worker 同样基于自身目录计算），因此部署在 `https://用户名.github.io/仓库名/` 这样的**子目录**下也能正常安装与离线缓存，无需改任何配置。
+
+```bash
+# 1. 在 GitHub 新建一个空仓库（Public；免费账号的 Pages 只支持公开仓库）
+# 2. 关联并推送
+git remote add origin https://github.com/<用户名>/<仓库名>.git
+git push -u origin main
+```
+
+3. 打开仓库 **Settings → Pages → Build and deployment → Source**，选择 **GitHub Actions**（只需设置一次）。
+4. 推送后 `.github/workflows/deploy.yml` 会自动 `npm ci → test → build → 发布`，约 1 分钟完成。
+5. 访问 `https://<用户名>.github.io/<仓库名>/`，手机打开后即可「添加到主屏幕」。
+
+之后每次改代码只需 `git push`，Actions 自动重新构建发布，不用手动上传 dist。
+
+> 注意：GitHub Pages 在国内部分网络下访问不稳定。若手机打不开，改用 Cloudflare Pages / Netlify 上传 `dist.zip` 即可，链接换成它生成的 `*.pages.dev` / `*.netlify.app`。
+
+---
+
 ## 数据说明
 
 所有数据仅保存在当前浏览器（localStorage），不联网、不上传。清理浏览器数据、卸载应用或换设备都会导致记录丢失，重要记录请自行留意。
