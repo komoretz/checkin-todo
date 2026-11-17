@@ -2,6 +2,7 @@ node_modules/
 dist/
 dist.zip
 docs/screenshot.png
+docs/qr.png
 .DS_Store
 *.local
 .vite/
