@@ -1,0 +1,13 @@
+{
+  "appId": "com.komoretz.checkintodo",
+  "appName": "打卡待办",
+  "webDir": "dist",
+  "android": {
+    "backgroundColor": "#f4f5f8",
+    "allowMixedContent": false,
+    "webContentsDebuggingEnabled": false
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

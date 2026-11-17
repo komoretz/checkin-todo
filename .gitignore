@@ -6,3 +6,11 @@ docs/qr.png
 .DS_Store
 *.local
 .vite/
+
+# 原生工程本地产物
+android/local.properties
+android/app/src/main/assets/public/
+android/app/build/
+android/build/
+android/.gradle/
+out/

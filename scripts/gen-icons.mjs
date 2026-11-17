@@ -75,11 +75,12 @@ function sdSegment(px, py, ax, ay, bx, by) {
 
 const lerp = (a, b, t) => a + (b - a) * t
 
-function drawIcon(size, { maskable = false } = {}) {
+function drawIcon(size, { maskable = false, bleed = false } = {}) {
   const buf = Buffer.alloc(size * size * 4)
   const s = size
-  const pad = maskable ? 0 : s * 0.06 // 普通图标留白，maskable 满铺
-  const radius = maskable ? 0 : s * 0.235
+  const full = maskable || bleed
+  const pad = full ? 0 : s * 0.06 // 普通图标留白，满铺版本不留
+  const radius = full ? 0 : s * 0.235
   const aa = 1.2 // 抗锯齿宽度（像素）
 
   // 勾的三段（相对尺寸，maskable 时缩小以适配安全区）
@@ -144,3 +145,9 @@ for (const [name, size, opts] of targets) {
   fs.writeFileSync(path.join(outDir, name), drawIcon(size, opts))
   console.log('✓', name, `${size}x${size}`)
 }
+
+// 安卓/iOS 安装包图标源图：满铺无透明，交给 @capacitor/assets 生成各 dpi
+const assetsDir = path.resolve(process.cwd(), 'assets')
+fs.mkdirSync(assetsDir, { recursive: true })
+fs.writeFileSync(path.join(assetsDir, 'icon.png'), drawIcon(1024, { bleed: true }))
+console.log('✓ assets/icon.png 1024x1024')
