@@ -1,0 +1,22 @@
+{
+  "name": "checkin-todo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "极简打卡待办 PWA —— 本地存储，可安装到手机桌面",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "test": "node scripts/test-logic.mjs",
+    "icons": "node scripts/gen-icons.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}
